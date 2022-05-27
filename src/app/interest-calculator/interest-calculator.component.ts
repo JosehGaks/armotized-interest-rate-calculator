@@ -30,9 +30,7 @@ export class InterestCalculatorComponent implements OnInit {
     const rate = interest_rate / 100;
     const i = rate / 12;
     const n = months;
-
     const dem = p * i;
-
     const lnm = (1 / (1 + i)) ** n;
     const r = dem / (1 - lnm);
 
