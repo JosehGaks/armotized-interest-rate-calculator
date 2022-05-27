@@ -1,0 +1,67 @@
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-4">
+            <div class="d-flex flex-column mb-3">
+                <div class="p-4">
+                    <div class="card text-white bg-light mb-3 text-center text-dark" style="max-width: 18rem;">
+                        <div class="card-header text-dark"><mat-label>Monthly payment:</mat-label></div>
+                        <div class="card-body">
+                          <h5 class="card-title text-dark">ksh {{amount_monthly | number : '1.0-0'}}</h5>
+                        </div>
+                    </div>
+                    
+                </div>
+                <div class="p-4">
+                    <div class="card text-white bg-light mb-3 text-center text-dark" style="max-width: 18rem;">
+                        <div class="card-header text-dark"><mat-label>Total payment:</mat-label></div>
+                        <div class="card-body">
+                          <h5 class="card-title text-dark">ksh {{amount_total | number : '1.0-0'}}</h5>
+                        </div>
+                    </div>
+                          
+                </div>
+                
+            </div>
+        
+
+        </div>
+        
+        <div class="col-4 fom " >
+            <div class="p-4">
+
+            <form *ngIf="interestForm"  [formGroup]="interestForm" (ngSubmit) = "calculateInterest()" novalidate>
+                <mat-form-field class="mb-4">
+                    <mat-label for="loanAmount">Loan Amount (KES)</mat-label>
+                    <input matInput  placeholder="Enter loan amount" formControlName="loanAmount" >
+                    <span *ngIf="(loanAmount.dirty || loanAmount.touched) && loanAmount.invalid && loanAmount.errors.required">
+                        loan amount is required.
+                      </span>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="mb-4">
+                    <mat-label for="annualInterestRate">Annual Interest Rate (%)</mat-label>
+                    <input matInput  placeholder="Enter interest rate" formControlName="annualInterestRate">
+                    <span *ngIf="(annualInterestRate.dirty || annualInterestRate.touched) && annualInterestRate.invalid && annualInterestRate.errors.required">
+                        Interest Rate (%) is required.
+                      </span>
+                </mat-form-field>
+                <br>
+                <mat-form-field class="mb-4">
+                    <mat-label for="timeMonths">Term (Months)</mat-label>
+                    <input matInput  placeholder="Enter the total months" formControlName="timeMonths">
+                    <span *ngIf="(timeMonths.dirty || timeMonths.touched) && timeMonths.invalid && timeMonths.errors.required">
+                        Time in months is required.
+                      </span>
+                </mat-form-field>
+                <br>
+                <button mat-raised-button color="primary" type="submit" class="mb-4" [disabled]="!interestForm.valid">Calculate</button>
+            </form>
+
+        </div>
+
+        </div>
+      </div>
+
+</div>
+
+
