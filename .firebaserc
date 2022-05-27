@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "interest-calculator-a525c": {
+      "hosting": {
+        "interest-calculator": [
+          "interest-calculator-a525c"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "interest-calculator-a525c"
+  }
+}

@@ -101,6 +101,16 @@
             ],
             "scripts": []
           }
+        },
+        "deploy": {
+          "builder": "@angular/fire:deploy",
+          "options": {
+            "prerender": false,
+            "ssr": false,
+            "browserTarget": "interest-calculator:build:production",
+            "firebaseProject": "interest-calculator-a525c",
+            "firebaseHostingSite": "interest-calculator-a525c"
+          }
         }
       }
     }
