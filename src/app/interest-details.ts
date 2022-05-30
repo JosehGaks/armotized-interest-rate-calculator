@@ -1,5 +1,5 @@
 export interface InterestDetails {
-  loanAmount: number;
-  annualInterestRate: number;
-  timeMonths: number;
+  balance: number;
+  rate: number;
+  months: number;
 }
