@@ -10,9 +10,10 @@ import { MatInputModule } from '@angular/material/input';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
+import { InterestTableComponent } from './interest-table/interest-table.component';
 
 @NgModule({
-  declarations: [AppComponent, InterestCalculatorComponent],
+  declarations: [AppComponent, InterestCalculatorComponent, InterestTableComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
