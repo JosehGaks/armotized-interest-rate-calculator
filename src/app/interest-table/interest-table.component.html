@@ -1,43 +1,48 @@
-<table mat-table [dataSource]="data" class="mat-elevation-z8">
-  <!-- year Column -->
-  <ng-container matColumnDef="year">
-    <th mat-header-cell *matHeaderCellDef>Year</th>
-    <td mat-cell *matCellDef="let element">{{ element.year }}</td>
-  </ng-container>
+<mat-tab-group>
+  <mat-tab label="First"> Content 1 </mat-tab>
+  <mat-tab label="Monthly Amortization">
+    <table mat-table [dataSource]="data" class="mat-elevation-z8">
+      <!-- year Column -->
+      <ng-container matColumnDef="year">
+        <th mat-header-cell *matHeaderCellDef>Year</th>
+        <td mat-cell *matCellDef="let element">{{ element.year }}</td>
+      </ng-container>
 
-  <!-- principal Column -->
-  <ng-container matColumnDef="principal">
-    <th mat-header-cell *matHeaderCellDef>Principal</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.principal | currency: "ksh ":"symbol":"1.2-2" }}
-    </td>
-  </ng-container>
+      <!-- principal Column -->
+      <ng-container matColumnDef="principal">
+        <th mat-header-cell *matHeaderCellDef>Principal</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.principal | currency: "ksh ":"symbol":"1.2-2" }}
+        </td>
+      </ng-container>
 
-  <!-- interest Column -->
-  <ng-container matColumnDef="interest">
-    <th mat-header-cell *matHeaderCellDef>Interest</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.interest | currency: "ksh ":"symbol":"1.2-2" }}
-    </td>
-  </ng-container>
+      <!-- interest Column -->
+      <ng-container matColumnDef="interest">
+        <th mat-header-cell *matHeaderCellDef>Interest</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.interest | currency: "ksh ":"symbol":"1.2-2" }}
+        </td>
+      </ng-container>
 
-  <!-- total Column -->
-  <ng-container matColumnDef="total">
-    <th mat-header-cell *matHeaderCellDef>Total</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.total | currency: "ksh ":"symbol":"1.2-2" }}
-    </td>
-  </ng-container>
+      <!-- total Column -->
+      <ng-container matColumnDef="total">
+        <th mat-header-cell *matHeaderCellDef>Total</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.total | currency: "ksh ":"symbol":"1.2-2" }}
+        </td>
+      </ng-container>
 
-  <!-- balance Column -->
-  <ng-container matColumnDef="balance">
-    <th mat-header-cell *matHeaderCellDef>Balance</th>
-    <td mat-cell *matCellDef="let element">
-      {{ element.balance | currency: "ksh ":"symbol":"1.2-2" }}
-    </td>
-  </ng-container>
+      <!-- balance Column -->
+      <ng-container matColumnDef="balance">
+        <th mat-header-cell *matHeaderCellDef>Balance</th>
+        <td mat-cell *matCellDef="let element">
+          {{ element.balance | currency: "ksh ":"symbol":"1.2-2" }}
+        </td>
+      </ng-container>
 
-  <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
-</table>
+      <tr mat-header-row *matHeaderRowDef="displayColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayColumns"></tr>
+    </table>
+  </mat-tab>
+</mat-tab-group>
 <br />
