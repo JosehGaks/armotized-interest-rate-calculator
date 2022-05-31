@@ -14,6 +14,7 @@ import { InterestTableComponent } from './interest-table/interest-table.componen
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
 import { MatChipsModule } from '@angular/material/chips';
+import { MatDatepickerModule } from '@angular/material/datepicker';
 
 @NgModule({
   declarations: [
@@ -28,6 +29,7 @@ import { MatChipsModule } from '@angular/material/chips';
     MatChipsModule,
     MatTabsModule,
     MatInputModule,
+    MatDatepickerModule,
     MatGridListModule,
     MatCardModule,
     MatButtonModule,
