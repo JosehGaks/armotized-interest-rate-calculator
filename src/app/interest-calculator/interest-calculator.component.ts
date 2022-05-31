@@ -5,6 +5,11 @@ import {
   Validators,
   ReactiveFormsModule,
 } from '@angular/forms';
+import {
+  MonthlyArmotizationElements,
+  InterestDetails,
+} from '../interest-details';
+import { InterestService } from './../interest.service';
 
 @Component({
   selector: 'app-interest-calculator',
@@ -16,7 +21,12 @@ export class InterestCalculatorComponent implements OnInit {
   amount_monthly: number = 0;
   amount_total: number = 0;
 
-  constructor(private builder: FormBuilder) {}
+  calculatedInterestDetails: MonthlyArmotizationElements[] = [];
+
+  constructor(
+    private builder: FormBuilder,
+    private interestService: InterestService
+  ) {}
 
   ngOnInit(): void {
     this.interestForm = this.builder.group({
@@ -26,17 +36,6 @@ export class InterestCalculatorComponent implements OnInit {
     });
   }
 
-  calculator = (p: number, months: number, interest_rate: number) => {
-    const rate = interest_rate / 100;
-    const i = rate / 12;
-    const n = months;
-    const dem = p * i;
-    const lnm = (1 / (1 + i)) ** n;
-    const r = dem / (1 - lnm);
-
-    return r;
-  };
-
   calculateInterest() {
     console.log(parseFloat(this.interestForm?.get('loanAmount')?.value));
     console.log(parseFloat(this.interestForm?.get('timeMonths')?.value));
@@ -44,10 +43,10 @@ export class InterestCalculatorComponent implements OnInit {
       parseFloat(this.interestForm?.get('annualInterestRate')?.value)
     );
 
-    this.amount_monthly = this.calculator(
+    this.amount_monthly = this.interestService.calculator(
       parseFloat(this.interestForm?.get('loanAmount')?.value),
-      parseFloat(this.interestForm?.get('timeMonths')?.value),
-      parseFloat(this.interestForm?.get('annualInterestRate')?.value)
+      parseFloat(this.interestForm?.get('annualInterestRate')?.value),
+      parseFloat(this.interestForm?.get('timeMonths')?.value)
     );
 
     this.amount_total =
@@ -55,6 +54,14 @@ export class InterestCalculatorComponent implements OnInit {
       parseFloat(this.interestForm?.get('timeMonths')?.value);
 
     console.log(this.amount_total);
+
+    this.calculatedInterestDetails = this.interestService.interest_calculator(
+      new InterestDetails(
+        parseFloat(this.interestForm?.get('loanAmount')?.value),
+        parseFloat(this.interestForm?.get('annualInterestRate')?.value),
+        parseFloat(this.interestForm?.get('timeMonths')?.value)
+      )
+    );
   }
 
   get loanAmount(): any {

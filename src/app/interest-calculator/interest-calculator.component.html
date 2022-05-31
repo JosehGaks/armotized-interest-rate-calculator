@@ -98,6 +98,13 @@
               Time in months is required.
             </span>
           </mat-form-field>
+          <mat-form-field appearance="fill">
+            <mat-label>Choose a date</mat-label>
+            <input matInput `[matDatepicker]="picker">
+            <mat-hint>MM/DD/YYYY</mat-hint>
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <mat-datepicker #picker startView="year" [startAt]="startDate"></mat-datepicker>
+          </mat-form-field>
           <br />
           <button
             mat-raised-button
@@ -113,3 +120,4 @@
     </div>
   </div>
 </div>
+<app-interest-table [data]="calculatedInterestDetails"> </app-interest-table>
