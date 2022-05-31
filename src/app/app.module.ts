@@ -13,6 +13,7 @@ import { MatGridListModule } from '@angular/material/grid-list';
 import { InterestTableComponent } from './interest-table/interest-table.component';
 import { MatTableModule } from '@angular/material/table';
 import { MatTabsModule } from '@angular/material/tabs';
+import { MatChipsModule } from '@angular/material/chips';
 
 @NgModule({
   declarations: [
@@ -24,6 +25,7 @@ import { MatTabsModule } from '@angular/material/tabs';
     BrowserModule,
     BrowserAnimationsModule,
     MatTableModule,
+    MatChipsModule,
     MatTabsModule,
     MatInputModule,
     MatGridListModule,
