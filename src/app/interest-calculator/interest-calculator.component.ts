@@ -46,13 +46,6 @@ export class InterestCalculatorComponent implements OnInit {
   }
 
   calculateInterest() {
-    console.log(parseFloat(this.interestForm?.get('loanAmount')?.value));
-    console.log(parseFloat(this.interestForm?.get('timeMonths')?.value));
-    console.log(
-      parseFloat(this.interestForm?.get('annualInterestRate')?.value)
-    );
-    console.log(new Date(this.interestForm?.get('startDate')?.value));
-
     this.loanAmountDetail = parseFloat(
       this.interestForm?.get('loanAmount')?.value
     );
@@ -66,9 +59,6 @@ export class InterestCalculatorComponent implements OnInit {
     this.amount_total =
       this.amount_monthly *
       parseFloat(this.interestForm?.get('timeMonths')?.value);
-
-    console.log(this.amount_total);
-
     this.calculatedInterestDetails = this.interestService.interest_calculator(
       new InterestDetails(
         parseFloat(this.interestForm?.get('loanAmount')?.value),
