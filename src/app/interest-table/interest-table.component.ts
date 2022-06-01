@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { MonthlyArmotizationElements } from '../interest-details';
+import { MonthlyArmotizationElements, Year } from '../interest-details';
 
 // export interface MonthlyArmotizationElements {
 //   year: any;
@@ -9,72 +9,6 @@ import { MonthlyArmotizationElements } from '../interest-details';
 //   balance: number;
 // }
 
-// const DATA: MonthlyArmotizationElements[] = [
-//   {
-//     year: 'Jan.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'Feb.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'Mar.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'Apr.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'May.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'Jun.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'Jul.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'Aug.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-//   {
-//     year: 'Sep.2014',
-//     principal: 235.27,
-//     interest: 32.93,
-//     total: 268.19,
-//     balance: 2764.73,
-//   },
-// ];
-
 @Component({
   selector: 'app-interest-table',
   templateUrl: './interest-table.component.html',
@@ -82,6 +16,7 @@ import { MonthlyArmotizationElements } from '../interest-details';
 })
 export class InterestTableComponent implements OnInit {
   @Input() data!: MonthlyArmotizationElements[];
+  @Input() yearlyData!: Year[];
 
   displayColumns: string[] = [
     'year',
@@ -94,4 +29,20 @@ export class InterestTableComponent implements OnInit {
   constructor() {}
 
   ngOnInit(): void {}
+
+  getTotalPrincipal() {
+    return this.data
+      .map((t) => t.principal)
+      .reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotalInterest() {
+    return this.data
+      .map((t) => t.interest)
+      .reduce((acc, value) => acc + value, 0);
+  }
+
+  getTotal() {
+    return this.data.map((t) => t.total).reduce((acc, value) => acc + value, 0);
+  }
 }

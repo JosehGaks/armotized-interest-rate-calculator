@@ -8,8 +8,11 @@ import {
 import {
   MonthlyArmotizationElements,
   InterestDetails,
+  Year,
 } from '../interest-details';
 import { InterestService } from './../interest.service';
+
+import * as moment from 'moment';
 
 @Component({
   selector: 'app-interest-calculator',
@@ -20,8 +23,13 @@ export class InterestCalculatorComponent implements OnInit {
   interestForm: FormGroup | undefined;
   amount_monthly: number = 0;
   amount_total: number = 0;
+  loanAmountDetail: number = 0;
+  payoffDate: any;
+
+  data: boolean = false;
 
   calculatedInterestDetails: MonthlyArmotizationElements[] = [];
+  yearlyData: Year[] = [];
 
   constructor(
     private builder: FormBuilder,
@@ -33,6 +41,7 @@ export class InterestCalculatorComponent implements OnInit {
       loanAmount: ['', [Validators.required]],
       annualInterestRate: ['', [Validators.required]],
       timeMonths: ['', [Validators.required]],
+      startDate: ['', [Validators.required]],
     });
   }
 
@@ -42,11 +51,16 @@ export class InterestCalculatorComponent implements OnInit {
     console.log(
       parseFloat(this.interestForm?.get('annualInterestRate')?.value)
     );
+    console.log(new Date(this.interestForm?.get('startDate')?.value));
+
+    this.loanAmountDetail = parseFloat(
+      this.interestForm?.get('loanAmount')?.value
+    );
 
     this.amount_monthly = this.interestService.calculator(
       parseFloat(this.interestForm?.get('loanAmount')?.value),
-      parseFloat(this.interestForm?.get('annualInterestRate')?.value),
-      parseFloat(this.interestForm?.get('timeMonths')?.value)
+      parseFloat(this.interestForm?.get('timeMonths')?.value),
+      parseFloat(this.interestForm?.get('annualInterestRate')?.value)
     );
 
     this.amount_total =
@@ -59,9 +73,21 @@ export class InterestCalculatorComponent implements OnInit {
       new InterestDetails(
         parseFloat(this.interestForm?.get('loanAmount')?.value),
         parseFloat(this.interestForm?.get('annualInterestRate')?.value),
-        parseFloat(this.interestForm?.get('timeMonths')?.value)
+        parseFloat(this.interestForm?.get('timeMonths')?.value),
+        moment(new Date(this.interestForm?.get('startDate')?.value))
       )
     );
+
+    this.yearlyData = this.interestService.mapIntoYear(
+      this.interestService.sliceIntoChunks(this.calculatedInterestDetails)
+    );
+
+    this.payoffDate =
+      this.calculatedInterestDetails[
+        this.calculatedInterestDetails.length - 1
+      ].year;
+
+    this.data = true;
   }
 
   get loanAmount(): any {
