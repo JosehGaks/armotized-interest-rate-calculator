@@ -1,12 +1,8 @@
 <div class="container-fluid p-4">
   <mat-tab-group>
     <mat-tab label="Yearly Amortization">
-      <div class="container mat-elevation-z8">
-        <table
-          mat-table
-          [dataSource]="yearlyData"
-          class="mat-elevation-z8 border"
-        >
+      <div class="example-container mat-elevation-z8">
+        <table mat-table [dataSource]="yearlyData">
           <!-- year Column -->
           <ng-container matColumnDef="year">
             <th mat-header-cell *matHeaderCellDef>Year</th>
